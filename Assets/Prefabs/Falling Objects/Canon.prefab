@@ -117,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1992013836838660123, guid: 2daab7d086b9e6844b82ecf90b814808, type: 3}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097053256936978113, guid: 2daab7d086b9e6844b82ecf90b814808, type: 3}
       propertyPath: m_Size.y
