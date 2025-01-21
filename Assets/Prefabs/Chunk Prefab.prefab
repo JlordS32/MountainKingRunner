@@ -266,6 +266,8 @@ MonoBehaviour:
   - 3.33
   _appleSpawnChance: 0.335
   _coinSpawnChance: 0.5
+  _maxCoinsToSpawn: 6
+  _coinSeperation: 5
 --- !u!1001 &1559509993293534650
 PrefabInstance:
   m_ObjectHideFlags: 0
