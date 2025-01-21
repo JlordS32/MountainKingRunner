@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject _chunkPrefab;
-    [SerializeField] private int _startingChunkAmount = 12;
     [SerializeField] private Transform _chunkParent;
+    [SerializeField] private CameraController _cameraController;
+
+    [Header("Params")]
+    [Tooltip("Starting chunk amount.")]
+    [SerializeField] private int _startingChunkAmount = 12;
+
+    [Tooltip("Default size of the chunk is 10.")]
     [SerializeField] private float _chunkLength = 10f;
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _minMoveSpeed = 2f;
-    [SerializeField] private CameraController _cameraController;
 
+    // Variables
     private List<GameObject> _chunks;
     private float _startingSpeed;
     private float _startingGravity;
