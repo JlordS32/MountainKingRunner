@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _startingChunkAmount = 12;
     [SerializeField] private Transform _chunkParent;
     [SerializeField] private float _chunkLength = 10f;
-    [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] private float _moveSpeed = 10f;
 
     private List<GameObject> _chunks;
 
@@ -63,6 +63,7 @@ public class LevelGenerator : MonoBehaviour
     public IEnumerator SlowDown(int delaySeconds, float speed)
     {
         float temp = _moveSpeed;
+
         _moveSpeed = speed;
         yield return new WaitForSeconds(delaySeconds);
         _moveSpeed = temp;
