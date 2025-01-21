@@ -254,10 +254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fencePrefab: {fileID: 3685133092806550840, guid: 440b2673c1b1e7b4e8b0ba9fe2cc17cf, type: 3}
+  _applePrefab: {fileID: 3756543055930136642, guid: 9509946d42a746544bd456fb80d58b33, type: 3}
   _lanes:
-  - 2.5
-  - 0
-  - -2.5
+  - -1.81
+  - 1.24
+  - 4.34
 --- !u!1001 &1559509993293534650
 PrefabInstance:
   m_ObjectHideFlags: 0
