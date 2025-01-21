@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    const string PLAYER_TAG = "Player";
+    private const string PLAYER_TAG = "Player";
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == PLAYER_TAG)
+        if (other.CompareTag(PLAYER_TAG))
         {
             Debug.Log("Picked up");
         }
-    }
+    } 
 }
