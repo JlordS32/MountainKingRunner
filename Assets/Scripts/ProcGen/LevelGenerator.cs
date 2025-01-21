@@ -10,6 +10,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform _chunkParent;
     [SerializeField] private float _chunkLength = 10f;
     [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private float _minMoveSpeed = 2f;
+    [SerializeField] private float _maxMoveSpeed = 20f;
 
     private List<GameObject> _chunks;
 
@@ -64,7 +66,18 @@ public class LevelGenerator : MonoBehaviour
     {
         float temp = _moveSpeed;
 
-        _moveSpeed = speed;
+        _moveSpeed -= speed;
+        if (_moveSpeed < _minMoveSpeed) _moveSpeed = _minMoveSpeed;
+        yield return new WaitForSeconds(delaySeconds);
+        _moveSpeed = temp;
+    }
+
+    public IEnumerator Boost(int delaySeconds, float speed)
+    {
+        float temp = _moveSpeed;
+
+        _moveSpeed += speed;
+        if (_moveSpeed > _maxMoveSpeed) _moveSpeed = _maxMoveSpeed;
         yield return new WaitForSeconds(delaySeconds);
         _moveSpeed = temp;
     }

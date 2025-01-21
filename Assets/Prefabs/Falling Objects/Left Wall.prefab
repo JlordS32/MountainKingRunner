@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2544295176238834134}
   - component: {fileID: 1504480927676083827}
   - component: {fileID: 3676074359189625529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Cornice_Modular_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8709871763505280000}
   - component: {fileID: 4749118180577785323}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Wall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6580794139039108124}
   - component: {fileID: 7853282633649292217}
   - component: {fileID: 5411217594750990195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_Cornice_Modular_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
