@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -57,5 +58,13 @@ public class LevelGenerator : MonoBehaviour
         GameObject newChunk = Instantiate(_chunkPrefab, chunkPos, Quaternion.identity, _chunkParent);
 
         _chunks.Add(newChunk);
+    }
+
+    public IEnumerator SlowDown(int delaySeconds, float speed)
+    {
+        float temp = _moveSpeed;
+        _moveSpeed = speed;
+        yield return new WaitForSeconds(delaySeconds);
+        _moveSpeed = temp;
     }
 }
