@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Apple : Pickup
 {
-    [SerializeField] private float _speedMultipler = 1.1f;
+    [SerializeField] private float _speed = 1f;
     [SerializeField] private int _duration = 1;
 
     LevelGenerator _levelGenerator;
@@ -14,6 +14,6 @@ public class Apple : Pickup
     protected override void OnPickup()
     {
         // BUG: Player won't go back to normal speed after set duration.
-        StartCoroutine(_levelGenerator.Boost(_duration, _speedMultipler));
+        StartCoroutine(_levelGenerator.ChangeSpeed(_duration, _speed));
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _chunkLength = 10f;
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _minMoveSpeed = 2f;
-    [SerializeField] private float _maxMoveSpeed = 20f;
+    [SerializeField] private CameraController _cameraController;
 
     private List<GameObject> _chunks;
     private float _startingSpeed;
@@ -66,25 +65,18 @@ public class LevelGenerator : MonoBehaviour
         _chunks.Add(newChunk);
     }
 
-    public IEnumerator SlowDown(int delaySeconds, float speed)
-    {
-        _moveSpeed -= speed;
-        if (_moveSpeed < _minMoveSpeed) _moveSpeed = _minMoveSpeed;
-        yield return new WaitForSeconds(delaySeconds);
-        _moveSpeed = _startingSpeed;
-    }
-
-    public IEnumerator Boost(int delaySeconds, float speed)
+    public IEnumerator ChangeSpeed(int delaySeconds, float speed)
     {
         _moveSpeed += speed;
-        if (_moveSpeed > _maxMoveSpeed) _moveSpeed = _maxMoveSpeed;
+        if (_moveSpeed < _minMoveSpeed) _moveSpeed = _minMoveSpeed;
+        _cameraController.ChangeCamFOV(speed);
 
         // Update
         Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, Physics.gravity.z - speed);
         yield return new WaitForSeconds(delaySeconds);
 
         // Reset
-        Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, _startingSpeed);
+        Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, _startingGravity);
         _moveSpeed = _startingSpeed;
     }
 }

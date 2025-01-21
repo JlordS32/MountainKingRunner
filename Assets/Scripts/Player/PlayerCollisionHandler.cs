@@ -28,7 +28,8 @@ public class PlayerCollisionHandler : MonoBehaviour
         if (other.CompareTag(OBSTACLE_TAG) && _timer >= IFrames)
         {
             _anim.SetTrigger(HIT_ANIMATION);
-            StartCoroutine(_levelGenerator.SlowDown(_hitDelay, _slowDownSpeed));
+            StopAllCoroutines();
+            StartCoroutine(_levelGenerator.ChangeSpeed(_hitDelay, -_slowDownSpeed));
             
             // Reset invincibility cooldown
             _timer = 0f;
