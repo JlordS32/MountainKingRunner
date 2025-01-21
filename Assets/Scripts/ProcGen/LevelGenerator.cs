@@ -14,11 +14,15 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _maxMoveSpeed = 20f;
 
     private List<GameObject> _chunks;
+    private float _startingSpeed;
+    private float _startingGravity;
 
     private void Start()
     {
         _chunks = new List<GameObject>();
         InitialSpawnChunks();
+        _startingSpeed = _moveSpeed;
+        _startingGravity = Physics.gravity.z;
     }
 
     private void Update()
@@ -64,21 +68,23 @@ public class LevelGenerator : MonoBehaviour
 
     public IEnumerator SlowDown(int delaySeconds, float speed)
     {
-        float temp = _moveSpeed;
-
         _moveSpeed -= speed;
         if (_moveSpeed < _minMoveSpeed) _moveSpeed = _minMoveSpeed;
         yield return new WaitForSeconds(delaySeconds);
-        _moveSpeed = temp;
+        _moveSpeed = _startingSpeed;
     }
 
     public IEnumerator Boost(int delaySeconds, float speed)
     {
-        float temp = _moveSpeed;
-
         _moveSpeed += speed;
         if (_moveSpeed > _maxMoveSpeed) _moveSpeed = _maxMoveSpeed;
+
+        // Update
+        Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, Physics.gravity.z - speed);
         yield return new WaitForSeconds(delaySeconds);
-        _moveSpeed = temp;
+
+        // Reset
+        Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, _startingSpeed);
+        _moveSpeed = _startingSpeed;
     }
 }
