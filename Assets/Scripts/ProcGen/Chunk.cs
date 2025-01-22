@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Chunk : MonoBehaviour
 {
@@ -20,6 +19,12 @@ public class Chunk : MonoBehaviour
     [SerializeField] private float _coinSeperation = 5f;
 
     private List<int> availLanes = new List<int> { 0, 1, 2 };
+    private LevelGenerator _levelGenerator;
+
+    public void Init(LevelGenerator levelGenerator)
+    {
+        _levelGenerator = levelGenerator;
+    }
 
     private void Start()
     {
@@ -50,7 +55,8 @@ public class Chunk : MonoBehaviour
         int selectedLane = SelectLane();
 
         Vector3 spawnPos = new(_pickupLanes[selectedLane], transform.position.y, transform.position.z + 5f);
-        Instantiate(_applePrefab, spawnPos, Quaternion.identity, this.transform);
+        Apple newApple = Instantiate(_applePrefab, spawnPos, Quaternion.identity, this.transform).GetComponent<Apple>();
+        newApple.Init(_levelGenerator);
     }
 
     private void SpawnCoins()

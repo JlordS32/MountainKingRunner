@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -68,9 +67,11 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnChunk(float zOffset)
     {
         Vector3 chunkPos = new(transform.position.x, transform.position.y, zOffset);
-        GameObject newChunk = Instantiate(_chunkPrefab, chunkPos, Quaternion.identity, _chunkParent);
+        GameObject newChunkGO = Instantiate(_chunkPrefab, chunkPos, Quaternion.identity, _chunkParent);
 
-        _chunks.Add(newChunk);
+        _chunks.Add(newChunkGO);
+        Chunk newChunk = newChunkGO.GetComponent<Chunk>();
+        newChunk.Init(this);
     }
 
     public IEnumerator ChangeSpeed(int delaySeconds, float speed)

@@ -4,6 +4,6 @@ public class Coin : Pickup
 {
     protected override void OnPickup()
     {
-        ScoreboardManager.Instance.IncreaseScore(10);
+        ScoreboardManager.Instance.IncreaseScore(100);
     }
 }
