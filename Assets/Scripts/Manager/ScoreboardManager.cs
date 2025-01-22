@@ -11,12 +11,10 @@ public class ScoreboardManager : MonoBehaviour
     private int _score = 0;
     private GameManager _gameManager;
 
-    private void Start() {
-        _gameManager = GetComponent<GameManager>();
-    }
-
     private void Awake()
     {
+        _gameManager = GetComponent<GameManager>();
+
         // Ensure only one instance exists
         if (Instance != null && Instance != this)
         {
@@ -25,7 +23,7 @@ public class ScoreboardManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Optional: Keeps this instance persistent across scenes
+        DontDestroyOnLoad(gameObject); // Keeps this instance persistent across scenes
     }
 
     public void IncreaseScore(int amount)
