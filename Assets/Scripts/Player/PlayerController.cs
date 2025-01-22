@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _xClamp = 3f;
-    [SerializeField] private float _yClamp = 3f;
+    [SerializeField] private float _zClamp = 3f;
 
     private Vector2 _movement;
     private Rigidbody _rb;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         Vector3 newPos = currentPos + _speed * Time.fixedDeltaTime * direction;
 
         newPos.x = Mathf.Clamp(newPos.x, -_xClamp, _xClamp);
-        newPos.y = Mathf.Clamp(newPos.y, -_yClamp, _yClamp);
+        newPos.z = Mathf.Clamp(newPos.z, 0, _zClamp);
 
         _rb.MovePosition(newPos);
     }
