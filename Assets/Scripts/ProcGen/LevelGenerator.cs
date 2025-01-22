@@ -5,13 +5,15 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject _chunkPrefab;
+    [SerializeField] private GameObject[] _chunkPrefabs;
+    [SerializeField] private GameObject _checkpointChunkPrefab;
     [SerializeField] private Transform _chunkParent;
     [SerializeField] private CameraController _cameraController;
 
     [Header("Params")]
     [Tooltip("Starting chunk amount.")]
     [SerializeField] private int _startingChunkAmount = 12;
+    [SerializeField] private int _checkpoint = 10;
 
     [Tooltip("Default size of the chunk is 10.")]
     [SerializeField] private float _chunkLength = 10f;
@@ -22,6 +24,7 @@ public class LevelGenerator : MonoBehaviour
     private List<GameObject> _chunks;
     private float _startingSpeed;
     private float _startingGravity;
+    private int _chunkCounter = 0;
 
     private void Start()
     {
@@ -67,8 +70,19 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnChunk(float zOffset)
     {
         Vector3 chunkPos = new(transform.position.x, transform.position.y, zOffset);
-        GameObject newChunkGO = Instantiate(_chunkPrefab, chunkPos, Quaternion.identity, _chunkParent);
+        GameObject chunkToSpawn;
 
+        _chunkCounter++;
+        if (_chunkCounter % _checkpoint == 0)
+        {
+            chunkToSpawn = _checkpointChunkPrefab;
+        }
+        else
+        {
+            chunkToSpawn = _chunkPrefabs[Random.Range(0, _chunkPrefabs.Length)];
+        }
+
+        GameObject newChunkGO = Instantiate(chunkToSpawn, chunkPos, Quaternion.identity, _chunkParent);
         _chunks.Add(newChunkGO);
         Chunk newChunk = newChunkGO.GetComponent<Chunk>();
         newChunk.Init(this);
