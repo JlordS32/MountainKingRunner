@@ -43,4 +43,8 @@ public class GameManager : MonoBehaviour
         _gameOverText.SetActive(true);
         Time.timeScale = _timeScale;
     }
+
+    public void IncreaseTime(float amount) {
+        _timeLeft += amount;
+    }
 }
