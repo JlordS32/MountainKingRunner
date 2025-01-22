@@ -17,11 +17,7 @@ public class GameManager : MonoBehaviour
     private float _timeLeft;
     private bool _gameOver = false;
 
-    public bool GameOver
-    {
-        get { return _gameOver; }
-        set { _gameOver = value; }
-    }
+    public bool GameOver => _gameOver;
 
     private void Start()
     {
