@@ -3,6 +3,7 @@ using UnityEngine;
 abstract public class Pickup : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 100f;
+    [SerializeField] private AudioClip _audioClip;
 
     private const string PLAYER_TAG = "Player";
 
@@ -15,6 +16,10 @@ abstract public class Pickup : MonoBehaviour
     {
         if (other.CompareTag(PLAYER_TAG))
         {
+            if (_audioClip != null) {
+                SoundManager.Instance.PlaySound(_audioClip);
+            }
+            
             OnPickup();
             Destroy(gameObject);
         }

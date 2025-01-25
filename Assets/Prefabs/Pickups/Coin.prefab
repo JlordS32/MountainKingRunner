@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d177b263d2e844859c2d11002927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationSpeed: 100
+  _audioClip: {fileID: 8300000, guid: 3bca52421afc7ab4887710a381a3020e, type: 3}
 --- !u!1001 &2536409583062394704
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 100
-  _speedMultipler: 1.5
+  _audioClip: {fileID: 8300000, guid: fe0e8aa1a14ad68489f3dce44323d04d, type: 3}
+  _speed: 1
   _duration: 3
 --- !u!1001 &6427982852878159203
 PrefabInstance:
