@@ -5,18 +5,29 @@ public class Rock : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private float _shakeModifier = 10f;
+    [SerializeField] private float _cooldown = 1f;
 
-    CinemachineImpulseSource _cinemachineImpulseSource;
+    private CinemachineImpulseSource _cinemachineImpulseSource;
+    private AudioSource _audioSource;
+    private float _timer = 0f;
 
     private void Awake()
     {
         _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update() {
+        _timer += Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        if (_timer < _cooldown) return;
+
         FireImpulse();
         FX(other);
+        _timer = 0f;
     }
 
     private void FireImpulse()
@@ -31,5 +42,6 @@ public class Rock : MonoBehaviour
         ContactPoint contactPoint = other.contacts[0];
         _particleSystem.transform.position = contactPoint.point;
         _particleSystem.Play();
+        _audioSource.Play();
     }
 }

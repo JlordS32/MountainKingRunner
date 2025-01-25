@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController _player;
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private GameObject _gameOverText;
+    [SerializeField] private GameObject _tipText;
 
     [Header("Variables")]
     [SerializeField] private float _startTime = 5f;
@@ -26,6 +27,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Q))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
+
         if (_gameOver) return;
         _timeLeft -= Time.deltaTime;
         _timeText.text = $"Time: {_timeLeft.ToString("F1")}s";
@@ -41,10 +52,12 @@ public class GameManager : MonoBehaviour
         _gameOver = true;
         _player.enabled = false;
         _gameOverText.SetActive(true);
+        _tipText.SetActive(true);
         Time.timeScale = _timeScale;
     }
 
-    public void IncreaseTime(float amount) {
+    public void IncreaseTime(float amount)
+    {
         _timeLeft += amount;
     }
 }

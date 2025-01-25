@@ -1,9 +1,13 @@
-using UnityEngine;
-
 public class Coin : Pickup
 {
+    private ScoreboardManager _scoreboardManager;
+
+    private void Start() {
+        _scoreboardManager = FindFirstObjectByType<ScoreboardManager>();
+    }
+
     protected override void OnPickup()
     {
-        ScoreboardManager.Instance.IncreaseScore(100);
+        _scoreboardManager.IncreaseScore(100);
     }
 }
